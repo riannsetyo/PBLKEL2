@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Cangkriman</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .quiz-container {
+            background: #f9f9f9;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #444;
+        }
+
+        .question {
+            margin-bottom: 30px;
+            padding: 15px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .question p {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            padding: 10px;
+            background: #f1f1f1;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            color: #333;
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        input[type="radio"]:checked + label {
+            background-color: #dbeafe;
+            border-color: #3b82f6;
+        }
+
+        label.correct {
+            background: #d4edda !important;
+            border-color: #28a745 !important;
+            color: #155724;
+        }
+
+        label.incorrect {
+            background: #f8d7da !important;
+            border-color: #dc3545 !important;
+            color: #721c24;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        #timer {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #444;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div id="timer">Time Left: 20:00</div>
+    <div class="quiz-container">
+        <h1>Kuis Cangkriman</h1>
+        <form id="quiz-form">
+            <div class="question">
+                <p>1. Apa yang dimaksud dengan cangkriman wancah?</p>
+                <input type="radio" name="q1" value="A" id="q1a">
+                <label for="q1a">A. Unen-unen yang harus dibatang atau di-bedhek maksudnya</label>
+                <input type="radio" name="q1" value="B" id="q1b">
+                <label for="q1b">B. Cangkriman dalam bentuk plesedan</label>
+                <input type="radio" name="q1" value="C" id="q1c">
+                <label for="q1c">C. Cangkriman yang berhubungan dengan tembang</label>
+                <input type="radio" name="q1" value="D" id="q1d">
+                <label for="q1d">D. Tembang yang memiliki gatra yang berbeda</label>
+            </div>
+            <div class="question">
+                <p>2. Apa contoh dari cangkriman wancah (cekakan)?</p>
+                <input type="radio" name="q2" value="A" id="q2a">
+                <label for="q2a">A. Sapi nang kandhang, kaki mentheleng</label>
+                <input type="radio" name="q2" value="B" id="q2b">
+                <label for="q2b">B. Yuyu omahe ngerong</label>
+                <input type="radio" name="q2" value="C" id="q2c">
+                <label for="q2c">C. Sega sakepel dirubung tinggi</label>
+                <input type="radio" name="q2" value="D" id="q2d">
+                <label for="q2d">D. Klobot ginawa entheng</label>
+            </div>
+            <div class="question">
+                <p>3. Apa itu cangkriman pepindhan?</p>
+                <input type="radio" name="q3" value="A" id="q3a">
+                <label for="q3a">A. Cangkriman yang menggunakan plesetan</label>
+                <input type="radio" name="q3" value="B" id="q3b">
+                <label for="q3b">B. Cangkriman yang menggunakan perbandingan</label>
+                <input type="radio" name="q3" value="C" id="q3c">
+                <label for="q3c">C. Cangkriman yang berhubungan dengan barang</label>
+                <input type="radio" name="q3" value="D" id="q3d">
+                <label for="q3d">D. Cangkriman yang berhubungan dengan kehidupan sehari-hari</label>
+            </div>
+            <div class="question">
+                <p>4. Contoh dari cangkriman pepindhan adalah?</p>
+                <input type="radio" name="q4" value="A" id="q4a">
+                <label for="q4a">A. Nangka tiba neng suketan</label>
+                <input type="radio" name="q4" value="B" id="q4b">
+                <label for="q4b">B. Disuguh opak angin</label>
+                <input type="radio" name="q4" value="C" id="q4c">
+                <label for="q4c">C. Gajah nguntal sakrah</label>
+                <input type="radio" name="q4" value="D" id="q4d">
+                <label for="q4d">D. Asu turu di bregi watu</label>
+            </div>
+            <div class="question">
+                <p>5. Apa yang dimaksud dengan cangkriman sinawung ing tembang?</p>
+                <input type="radio" name="q5" value="A" id="q5a">
+                <label for="q5a">A. Cangkriman yang berbentuk puisi dan menggunakan rima</label>
+                <input type="radio" name="q5" value="B" id="q5b">
+                <label for="q5b">B. Cangkriman yang digunakan dalam nyanyian</label>
+                <input type="radio" name="q5" value="C" id="q5c">
+                <label for="q5c">C. Cangkriman yang terkait dengan tembang yang punya aturan khusus</label>
+                <input type="radio" name="q5" value="D" id="q5d">
+                <label for="q5d">D. Cangkriman dalam bentuk perbandingan barang dan benda</label>
+            </div>
+            <div class="question">
+                <p>6. Apa arti dari cangkriman wiwa wite, lesbodhonge?</p>
+                <input type="radio" name="q6" value="A" id="q6a">
+                <label for="q6a">A. Cikar dawa tipake</label>
+                <input type="radio" name="q6" value="B" id="q6b">
+                <label for="q6b">B. Uwi dawa uwite</label>
+                <input type="radio" name="q6" value="C" id="q6c">
+                <label for="q6c">C. Tales amba godhonge</label>
+                <input type="radio" name="q6" value="D" id="q6d">
+                <label for="q6d">D. Lemah obah budhihne</label>
+            </div>
+            <div class="question">
+                <p>7. Apa yang dimaksud dengan cangkriman keterangan?</p>
+                <input type="radio" name="q7" value="A" id="q7a">
+                <label for="q7a">A. Cangkriman dengan penjelasan atau deskripsi tentang sesuatu</label>
+                <input type="radio" name="q7" value="B" id="q7b">
+                <label for="q7b">B. Cangkriman dengan contoh cerita</label>
+                <input type="radio" name="q7" value="C" id="q7c">
+                <label for="q7c">C. Cangkriman berhubungan dengan pekerjaan</label>
+                <input type="radio" name="q7" value="D" id="q7d">
+                <label for="q7d">D. Cangkriman berhubungan dengan keadaan fisik</label>
+            </div>
+            <div class="question">
+                <p>8. Apa tujuan dari menggunakan cangkriman dalam budaya Jawa?</p>
+                <input type="radio" name="q8" value="A" id="q8a">
+                <label for="q8a">A. Sebagai hiburan yang menyenangkan</label>
+                <input type="radio" name="q8" value="B" id="q8b">
+                <label for="q8b">B. Sebagai ajaran moral atau pembelajaran</label>
+                <input type="radio" name="q8" value="C" id="q8c">
+                <label for="q8c">C. Sebagai alat komunikasi antara masyarakat</label>
+                <input type="radio" name="q8" value="D" id="q8d">
+                <label for="q8d">D. Semua jawaban benar</label>
+            </div>
+            <div class="question">
+                <p>9. Mengapa bahasa Jawa memiliki berbagai macam cangkriman?</p>
+                <input type="radio" name="q9" value="A" id="q9a">
+                <label for="q9a">A. Untuk menambah kekayaan budaya lokal</label>
+                <input type="radio" name="q9" value="B" id="q9b">
+                <label for="q9b">B. Untuk melestarikan bahasa daerah</label>
+                <input type="radio" name="q9" value="C" id="q9c">
+                <label for="q9c">C. Untuk meningkatkan rasa humor dalam kehidupan sehari-hari</label>
+                <input type="radio" name="q9" value="D" id="q9d">
+                <label for="q9d">D. Semua jawaban benar</label>
+            </div>
+            <div class="question">
+                <p>10. Apa yang dimaksud dengan "rebutan basahan" dalam cangkriman?</p>
+                <input type="radio" name="q10" value="A" id="q10a">
+                <label for="q10a">A. Rebutan makanan</label>
+                <input type="radio" name="q10" value="B" id="q10b">
+                <label for="q10b">B. Rebutan pewarisan</label>
+                <input type="radio" name="q10" value="C" id="q10c">
+                <label for="q10c">C. Rebutan pekerjaan</label>
+                <input type="radio" name="q10" value="D" id="q10d">
+                <label for="q10d">D. Rebutan kekuasaan dalam pemerintahan</label>
+            </div>
+            <button type="button" onclick="submitQuiz()">Kirim Jawaban</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        let timer = 20 * 60; // 20 minutes in seconds
+        const timerElement = document.getElementById("timer");
+        let interval;
+
+        function updateTimer() {
+            let minutes = Math.floor(timer / 60);
+            let seconds = timer % 60;
+            timerElement.textContent = `Time Left: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            if (timer <= 0) {
+                clearInterval(interval);
+                alert("Waktu habis! Quiz selesai.");
+                submitQuiz();
+            } else {
+                timer--;
+            }
+        }
+
+        function startTimer() {
+            interval = setInterval(updateTimer, 1000);
+        }
+
+        function submitQuiz() {
+            clearInterval(interval);
+            const form = document.getElementById("quiz-form");
+            const resultDiv = document.getElementById("result");
+            let score = 0;
+            const answers = {
+                q1: 'A', q2: 'A', q3: 'B', q4: 'A', q5: 'C',
+                q6: 'B', q7: 'A', q8: 'D', q9: 'D', q10: 'C'
+            };
+
+            // Check answers and calculate score
+            for (let i = 1; i <= 10; i++) {
+                const selected = form.querySelector(`input[name="q${i}"]:checked`);
+                if (selected && selected.value === answers[`q${i}`]) {
+                    score++;
+                    selected.nextElementSibling.classList.add('correct');
+                } else if (selected) {
+                    selected.nextElementSibling.classList.add('incorrect');
+                }
+            }
+
+            resultDiv.textContent = `You scored ${score} out of 10.`;
+        }
+
+        window.onload = startTimer;
+    </script>
+</body>
+</html>

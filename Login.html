@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <title>Login</title>
+    <style>
+      body {
+        background-color: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .navbar {
+        background-color: #f0e3ca;
+        padding: 20px 20px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+      }
+
+      .navbar a {
+        text-decoration: none;
+        color: #ff8c00;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+      }
+
+      .navbar a:hover {
+        color: #ff8c00;
+      }
+
+      .navbar i {
+        margin-right: 8px;
+      }
+
+      .login-container {
+        background: #ffffff;
+        border: 1px solid #ddd;
+        border-radius: 15px;
+        padding: 40px 20px;
+        width: 100%;
+        max-width: 500px;
+        text-align: left;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .login-container h1 {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+        text-align: left;
+      }
+
+      /* Styling untuk input form */
+      input {
+        width: 100%;
+        color: white;
+        font-size: inherit;
+        font-family: inherit;
+        background-color: hsl(236, 32%, 26%);
+        padding: 0.35em 0.45em;
+        border: 1px solid transparent;
+        transition: background-color 0.3s ease-in-out;
+        border-radius: 25px;
+      }
+
+      input:focus {
+        outline: none;
+      }
+
+      input::placeholder {
+        color: hsla(0, 0%, 100%, 0.6);
+      }
+
+      span {
+        position: absolute;
+        background-color: #3cefff;
+        transition: transform 0.5s ease;
+      }
+
+      .bottom,
+      .top {
+        height: 1px;
+        left: 0;
+        right: 0;
+        transform: scaleX(0);
+      }
+
+      .left,
+      .right {
+        width: 1px;
+        top: 0;
+        bottom: 0;
+        transform: scaleY(0);
+      }
+
+      .bottom {
+        bottom: 0;
+        transform-origin: bottom right;
+      }
+
+      input:focus ~ .bottom {
+        transform-origin: bottom left;
+        transform: scaleX(1);
+      }
+
+      .right {
+        right: 0;
+        transform-origin: top right;
+      }
+
+      input:focus ~ .right {
+        transform-origin: bottom right;
+        transform: scaleY(1);
+      }
+
+      .top {
+        top: 0;
+        transform-origin: top left;
+      }
+
+      input:focus ~ .top {
+        transform-origin: top right;
+        transform: scaleX(1);
+      }
+
+      .left {
+        left: 0;
+        transform-origin: bottom left;
+      }
+
+      input:focus ~ .left {
+        transform-origin: top left;
+        transform: scaleY(1);
+      }
+
+      /* Styling untuk tombol login */
+      .btn-login {
+        background-color: #ff8c00;
+        border: none;
+        border-radius: 10px;
+        width: 100%;
+        height: 45px;
+        color: white;
+        font-weight: bold;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+
+      .btn-login:hover {
+        background-color: #e67e00;
+        transform: scale(1.05);
+      }
+
+      .button-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+      }
+      
+      .eye-icon {
+        cursor: pointer;
+      }
+      
+      .loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        display: none;
+      }
+
+      .outer,
+      .middle,
+      .inner {
+        border: 3px solid transparent;
+        border-top-color: #3cefff;
+        border-right-color: #3cefff;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+      }
+
+      .outer {
+        width: 3.5em;
+        height: 3.5em;
+        margin-left: -1.75em;
+        margin-top: -1.75em;
+        animation: spin 2s linear infinite;
+      }
+
+      .middle {
+        width: 2.1em;
+        height: 2.1em;
+        margin-left: -1.05em;
+        margin-top: -1.05em;
+        animation: spin 1.75s linear reverse infinite;
+      }
+
+      .inner {
+        width: 0.8em;
+        height: 0.8em;
+        margin-left: -0.4em;
+        margin-top: -0.4em;
+        animation: spin 1.5s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="Tema.html">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+    </nav>
+
+    <div class="login-container">
+      <h1>Melbu Akun</h1>
+      
+      <div class="form-group">
+        <div style="position: relative;">
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="Masukkan Email Anda"
+          />
+          <span class="bottom"></span>
+          <span class="right"></span>
+          <span class="top"></span>
+          <span class="left"></span>
+        </div>
+      </div>
+      
+      <div class="form-group position-relative">
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          placeholder="Masukkan Password"
+        />
+        <i
+          class="fas fa-eye eye-icon position-absolute"
+          style="right: 10px; top: 50%; transform: translateY(-50%)"
+          onclick="togglePasswordVisibility()"
+        ></i>
+      </div>
+
+      <div class="d-flex align-items-center mb-3">
+        <div class="form-check ms-3">
+          <input type="checkbox" class="form-check-input" id="rememberMe" />
+          <label class="form-check-label" for="rememberMe" style="font-size: 12px">
+            Ilingono Aku
+          </label>
+        </div>
+        <div style="margin-left: auto; padding-right: 10px">
+          <a href="ChangePW.html" class="form-text" style="font-size: 12px; margin-top: 3px">
+            Lali Password?
+          </a>
+        </div>
+      </div>
+
+      <div class="button-container">
+        <button class="btn-login"  onclick="window.location.href='Dashboard2.html';" >Melbu</button>
+      </div>
+    </div>
+
+    <div class="loader">
+      <div class="outer"></div>
+      <div class="middle"></div>
+      <div class="inner"></div>
+    </div>
+
+    <script>
+      function togglePasswordVisibility() {
+        const passwordField = document.getElementById("password");
+        const eyeIcon = document.querySelector(".eye-icon");
+
+        if (passwordField.type === "password") {
+          passwordField.type = "text";
+          eyeIcon.classList.remove("fa-eye");
+          eyeIcon.classList.add("fa-eye-slash");
+        } else {
+          passwordField.type = "password";
+          eyeIcon.classList.remove("fa-eye-slash");
+          eyeIcon.classList.add("fa-eye");
+        }
+      }
+
+      document.getElementById("goToSecondWebsite").addEventListener("click", function() {
+        document.querySelector(".loader").style.display = "flex";
+
+        setTimeout(function() {
+          window.location.href = "http://second-website.com";
+        }, 2000);
+      });
+    </script>
+  </body>
+</html>

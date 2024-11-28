@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Loading Animation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+      /* Menambahkan CSS loader */
+      .loader {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999; /* Agar loader muncul di atas konten lain */
+      }
+
+      .outer,
+      .middle,
+      .inner {
+        border: 3px solid transparent;
+        border-top-color: #3cefff;
+        border-right-color: #3cefff;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+      }
+
+      .outer {
+        width: 3.5em;
+        height: 3.5em;
+        margin-left: -1.75em;
+        margin-top: -1.75em;
+        animation: spin 2s linear infinite;
+      }
+
+      .middle {
+        width: 2.1em;
+        height: 2.1em;
+        margin-left: -1.05em;
+        margin-top: -1.05em;
+        animation: spin 1.75s linear reverse infinite;
+      }
+
+      .inner {
+        width: 0.8em;
+        height: 0.8em;
+        margin-left: -0.4em;
+        margin-top: -0.4em;
+        animation: spin 1.5s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loader akan muncul saat halaman memuat -->
+    <div class="loader">
+      <div class="outer"></div>
+      <div class="middle"></div>
+      <div class="inner"></div>
+    </div>
+
+    <!-- Konten utama -->
+    <div class="container text-center">
+      <h1>Selamat datang di halaman saya!</h1>
+      <p>Konten akan muncul setelah animasi loading selesai.</p>
+    </div>
+
+    <script>
+      // Simulasi proses loading
+      window.onload = function() {
+        // Menghapus loader setelah halaman selesai dimuat
+        document.querySelector('.loader').style.display = 'none';
+      };
+    </script>
+  </body>
+</html>
